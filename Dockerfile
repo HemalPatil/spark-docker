@@ -8,7 +8,7 @@ USER	root
 
 # Developer tools
 RUN		apt-get update -y && \
-		apt-get install software-properties curl tar sudo ssh openssh-server openssh-client rsync -y && \
+		apt-get install software-properties-common curl tar sudo ssh openssh-server openssh-client rsync -y && \
 		add-apt-repository ppa:webupd8team/java -y && \
 		apt-get update -y
 
