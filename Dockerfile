@@ -39,6 +39,12 @@ RUN		curl -L https://github.com/HemalPatil/persistence-layer/releases/download/v
 RUN		rm -rf /usr/local/hadoop/lib/native
 RUN		mv /tmp/native /usr/local/hadoop/lib
 
+# Psuedo distributed mode
+ADD		core-site.xml /usr/local/hadoop/etc/hadoop/core-site.xml
+ADD		hdfs-site.xml /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+ADD		yarn-site.xml /usr/local/hadoop/etc/hadoop/yarn-site.xml
+ADD		mapred-site.xml /usr/local/hadoop/etc/hadoop/mapred-site.xml
+
 # Enviroment variables
 ENV		JAVA_HOME=/usr/lib/jvm/java-8-oracle \
 		HADOOP_HOME=/usr/local/hadoop \
