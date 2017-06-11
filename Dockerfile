@@ -28,8 +28,7 @@ RUN		curl -s http://www-eu.apache.org/dist/hadoop/common/hadoop-2.7.3/hadoop-2.7
 RUN		cd /usr/local && ln -s ./hadoop-2.7.3 hadoop
 
 # Spark 2.1.0
-# Mirror for India, change as per needs
-RUN		curl -s http://redrockdigimark.com/apachemirror/spark/spark-2.1.1/spark-2.1.1-bin-hadoop2.7.tgz | tar -xz -C /usr/local
+RUN		curl -s http://www-eu.apache.org/dist/spark/common/spark-2.1.0/spark-2.1.0-bin-hadoop2.7.tgz | tar -xz -C /usr/local
 RUN		cd /usr/local && ln -s ./spark-2.1.1-bin-hadoop2.7 spark
 
 # Hadoop 2.7.3 native libraries for Ubuntu 16.04 LTS 64-bit
