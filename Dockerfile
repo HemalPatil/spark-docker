@@ -24,8 +24,7 @@ RUN		ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key && \
 		cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 # Hadoop 2.7.3
-# Mirror for India, change as per needs
-RUN		curl -s http://mirror.fibergrid.in/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz | tar -xz -C /usr/local
+RUN		curl -s http://www-eu.apache.org/dist/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz | tar -xz -C /usr/local
 RUN		cd /usr/local && ln -s ./hadoop-2.7.3 hadoop
 
 # Spark 2.1.0
