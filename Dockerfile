@@ -12,7 +12,7 @@ RUN		apt-get update -y && \
 
 # Oracle Java 8 install
 RUN		curl -LO http://download.oracle.com/otn-pub/java/jdk/8u131-b11/jdk-8u131-linux-x64.tar.gz -H 'Cookie: oraclelicense=accept-securebackup-cookie'
-RUN		mkdir /usr/local/jdk && tar -zvf jdk-8u131-linux-x64.tar.gz -C /usr/local/jdk
+RUN		mkdir /usr/local/jdk && tar -xzf jdk-8u131-linux-x64.tar.gz -C /usr/local/jdk
 RUN		update-alternatives --install /usr/bin/java java /usr/local/jdk/jdk1.8.0_131/bin/java 10
 RUN		update-alternatives --install /usr/bin/javac javac /usr/local/jdk/jdk1.8.0_131/bin/javac 10
 RUN		rm jdk-8u131-linux-x64.tar.gz
