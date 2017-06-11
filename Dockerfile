@@ -8,14 +8,14 @@ USER	root
 
 # Developer tools
 RUN		apt-get update -y && \
-		apt-get install add-apt-repository curl tar sudo ssh openssh-server openssh-client rsync -y && \
-		add-apt-repository ppa:webupd8team/java -y && \
-		apt-get update -y
+		apt-get install curl tar sudo ssh openssh-server openssh-client rsync -y
 
 # Oracle Java 8 install
-RUN		echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections && \
-		apt-get install -y oracle-java8-installer && \
-		apt-get clean
+RUN		curl -LO http://download.oracle.com/otn-pub/java/jdk/8u131-b11/jdk-8u131-linux-x64.tar.gz -H 'Cookie: oraclelicense=accept-securebackup-cookie'
+RUN		mkdir /usr/local/jdk && tar -zvf jdk-8u131-linux-x64.tar.gz -C /usr/local/jdk
+RUN		update-alternatives --install /usr/bin/java java /usr/local/jdk/jdk1.8.0_131/bin/java 10
+RUN		update-alternatives --install /usr/bin/javac javac /usr/local/jdk/jdk1.8.0_131/bin/javac 10
+RUN		rm jdk-8u131-linux-x64.tar.gz
 
 # Passwordless SSH for Hadoop
 RUN		ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key && \
@@ -46,7 +46,7 @@ ADD		yarn-site.xml /usr/local/hadoop/etc/hadoop/yarn-site.xml
 ADD		mapred-site.xml /usr/local/hadoop/etc/hadoop/mapred-site.xml
 
 # Enviroment variables
-ENV		JAVA_HOME=/usr/lib/jvm/java-8-oracle \
+ENV		JAVA_HOME=/usr/local/jdk/jdk1.8.0_131 \
 		HADOOP_HOME=/usr/local/hadoop \
 		HADOOP_COMMON_HOME=/usr/local/hadoop \
 		HADOOP_HDFS_HOME=/usr/local/hadoop \
