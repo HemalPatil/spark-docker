@@ -18,9 +18,7 @@ RUN		update-alternatives --install /usr/bin/javac javac /usr/local/jdk/jdk1.8.0_
 RUN		rm jdk-8u131-linux-x64.tar.gz
 
 # Passwordless SSH for Hadoop
-RUN		ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key && \
-		ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key && \
-		ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa && \
+RUN		ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa && \
 		cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 # Hadoop 2.7.3
@@ -64,7 +62,7 @@ ENV		JAVA_HOME=/usr/local/jdk/jdk1.8.0_131 \
 ENV		PATH $PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$SPARK_HOME/bin:$SPARK_HOME/sbin
 
 # Format HDFS namenode
-RUN		service sshd start && \
+RUN		service ssh start && \
 		hdfs namenode -format
 
 # Hadoop ports
